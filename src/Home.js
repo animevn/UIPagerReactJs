@@ -26,7 +26,7 @@ function Home() {
             event.preventDefault();
             const id = event.relatedTarget.id;
             setTab({...initialTab, [id]:true});
-        })
+          })
         }
       </script>
     );
@@ -45,19 +45,21 @@ function Home() {
   }
 
   const imgBox = (
-    <div className="carousel-inner">
+    <div className="carousel-inner mt-4">
       {
         imgList.map((value, index) => {
           if (index === 0){
             return (
-              <div key={index} className="carousel-item active tab-pane" id={`i${index}`}>
-                <img className="w-100" src={value} alt={`i${index}`}/>
+              <div key={index} id={`i${index}`}
+                   className="carousel-item active tab-pane text-center">
+                <img style={{"height":"60vh"}} src={value} alt={`i${index}`}/>
               </div>
             )
           }else {
             return (
-              <div key={index} className="carousel-item tab-pane" id={`i${index}`}>
-                <img className="w-100" src={value} alt={`i${index}`}/>
+              <div key={index}  id={`i${index}`}
+                   className="carousel-item tab-pane text-center">
+                <img style={{"height":"60vh"}} src={value} alt={`i${index}`}/>
               </div>
             )
           }
@@ -80,7 +82,7 @@ function Home() {
   );
 
   const tabBox = (
-    <ul className="nav nav-pills mb-3 d-flex flex-row justify-content-center">
+    <ul className="nav nav-pills mt-4 d-flex flex-row justify-content-center">
       {
         imgList.map((value, index)=>{
           return (
@@ -100,14 +102,11 @@ function Home() {
   return (
     <div className="container mt-3 px-0">
 
-      <div id="carousel" className="carousel slide tab-content" data-interval="false">
-
-        {tabBox}
+      <div id="carousel" className="carousel slide tab-content"
+           data-interval="false" data-ride="carousel">
         {imgBox}
-
+        {tabBox}
       </div>
-
-
     </div>
   )
 }
