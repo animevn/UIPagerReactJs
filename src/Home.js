@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import $ from "jquery";
 import "bootstrap/js/dist/tab"
 import "bootstrap/js/dist/carousel";
-import {HomeContent, ContactContent, ProfileContent} from "./data";
 
 function Home() {
 
@@ -34,6 +33,7 @@ function Home() {
         }
       </script>
     );
+
     script.async = true;
     document.body.appendChild(script);
     return () => {
@@ -86,16 +86,16 @@ function Home() {
 
         <div className="carousel-inner">
 
-          <div className="carousel-item tab-pane active" id="pills-home">
-            {HomeContent}
+          <div className="carousel-item tab-pane text-justify active" id="pills-home">
+            <img src="/images/image1.webp" alt="img1"/>
           </div>
 
-          <div className="carousel-item tab-pane" id="pills-profile">
-            {ContactContent}
+          <div className="carousel-item tab-pane text-justify" id="pills-profile">
+            <img src="/images/image2.webp" alt="img2"/>
           </div>
           
-          <div className="carousel-item tab-pane" id="pills-contact">
-            {ProfileContent}
+          <div className="carousel-item tab-pane text-justify" id="pills-contact">
+            <img src="/images/image3.webp" alt="img3"/>
           </div>
 
           <a className="carousel-control-prev" href="#carousel" role="button"
