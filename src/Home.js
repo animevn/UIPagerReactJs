@@ -9,15 +9,13 @@ const imgList = [
   "/images/image9.webp"
 ];
 
-const tabInitialMap = new Map(
+const initialTab = Object.fromEntries(new Map(
   imgList.map((value, index) => [`i${index}`, false])
-);
-
-const tabInitial = Object.fromEntries(tabInitialMap);
+));
 
 function Home() {
 
-  const [tab, setTab] = useState({...tabInitial, i0: true});
+  const [tab, setTab] = useState({...initialTab, i0: true});
   useEffect(() => {
     const script = document.createElement("script");
     script.type = "text/babel";
@@ -27,7 +25,7 @@ function Home() {
           $('#carousel').on('slid.bs.carousel', function (event) {
             event.preventDefault();
             const id = event.relatedTarget.id;
-            setTab({...tabInitial, [id]:true});
+            setTab({...initialTab, [id]:true});
         })
         }
       </script>
@@ -43,7 +41,7 @@ function Home() {
   function onTabClick(event) {
     event.preventDefault();
     const id = event.target.id.substring(1);
-    setTab({...tabInitial, [id]:true});
+    setTab({...initialTab, [id]:true});
   }
 
   const imgBox = (
@@ -52,13 +50,13 @@ function Home() {
         imgList.map((value, index) => {
           if (index === 0){
             return (
-              <div className="carousel-item tab-pane active" id={`i${index}`}>
+              <div key={index} className="carousel-item active tab-pane" id={`i${index}`}>
                 <img className="w-100" src={value} alt={`i${index}`}/>
               </div>
             )
           }else {
             return (
-              <div className="carousel-item tab-pane" id={`i${index}`}>
+              <div key={index} className="carousel-item tab-pane" id={`i${index}`}>
                 <img className="w-100" src={value} alt={`i${index}`}/>
               </div>
             )
@@ -86,7 +84,7 @@ function Home() {
       {
         imgList.map((value, index)=>{
           return (
-            <li className="nav-item">
+            <li key={index} className="nav-item">
               <a data-toggle="pill" href={"#i" + index} id={"#i" + index}
                  onClick={onTabClick}
                  className={"nav-link " + (tab[`i${index}`] ? "active" : "")}>
@@ -102,8 +100,7 @@ function Home() {
   return (
     <div className="container mt-3 px-0">
 
-      <div id="carousel" className="carousel slide tab-content"
-           data-interval="false">
+      <div id="carousel" className="carousel slide tab-content" data-interval="false">
 
         {tabBox}
         {imgBox}
